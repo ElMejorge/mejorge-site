@@ -31,8 +31,8 @@ angular
       })
       .when('/homework', {
         templateUrl: 'views/homework.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'HomeworkCtrl',
+        controllerAs: 'homework'
       })
       .otherwise({
         redirectTo: '/'
