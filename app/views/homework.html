@@ -11,31 +11,63 @@
       <h3>
         Read the following article http://martinfowler.com/articles/microservices.html and explain what "Microservices Architecture" means.
       </h3>
+      <p>
+        It's a way to structure a team or a working flow to focus on making each part of the system a subsystem itself,
+        with the aim of making it as independent as possible so that it may be upgraded or replaced in the future without
+        any, or as few as possible, modifications to the rest of the system. It also involves changing the way the teams
+        in a company are structures since instead of dividing the workers by skills (developers, designers, managers), they
+        are divided into tinier teams composing of a balance between all of them so that they may develop and maintain the
+        microservice they work on.
+        This can be clearly seen with Amazon, specifically with their AWS products, since they completely separated the services
+        they used on their webpage and made each service a product itself.
+      </p>
     </li>
     <li>
       <h3>
         Create a bash file to setup a complete environment for this class.
       </h3>
+      <a href="resources/code/setup-env.sh" target="_self">File</a>
     </li>
     <li>
       <h3>
         Create a grunt task to deploy your website to your own bucket in S3
       </h3>
+      <a href="resources/code/setup-project.sh" target="_self">File</a>
     </li>
     <li>
       <h3>
         Explain how routes work in angular and a code example.
       </h3>
+      <p>
+        Routes in angular work through a service ($route) that links URLs to views and controllers. You interact with it
+        through the $routeProvider module, where you define the route it leads to and the route object with the mapping
+        information that will be used to resolve that URL. In this route object you define the controller (which controls
+        its behaviour), and the view (which defines how it looks), among other things.
+      </p>
+      <a href="resources/code/route-example.js" target="_self">Example</a>
     </li>
     <li>
       <h3>
         Explain how you can have more than one access key in your computer and how to use each one. Provide code or configuration examples.
       </h3>
+      <p>
+        By saving the different keys under a different header (ex. Profile 2) and changing the environment variable
+        AWS_CONFIG_FILE to the same header for that key. The default one is named 'default. By using the command export AWS_CONFIG_FILE = {header}
+        you can change it to a different one for the remainder of the session.
+      </p>
+      <a href="resources/code/aws-keys" target="_self">Example</a>
     </li>
     <li>
       <h3>
         Explain what are you going to do different this semester based on last semester experience.
       </h3>
+      <p>
+        This semester my main objective is to be able to better handle my schedule since I get very tired with work and
+        school, so I end up just sleeping as soon as I get home instead of advancing, even a little my homework so I end
+        up working hurriedly before deadlines and even missing them sometimes (like right now). I think just by making better
+        use of my free time after classes and on weekends I can get to a workflow I feel comfortable with and with which I
+        can finish homework early and effectively.
+      </p>
     </li>
   </ol>
 </body>
