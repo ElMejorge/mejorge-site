@@ -29,8 +29,13 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/homework', {
-        templateUrl: 'views/homework.html',
+      .when('/homework/1', {
+        templateUrl: 'views/homework1.html',
+        controller: 'HomeworkCtrl',
+        controllerAs: 'homework'
+      })
+      .when('/homework/2', {
+        templateUrl: 'views/homework2.html',
         controller: 'HomeworkCtrl',
         controllerAs: 'homework'
       })
@@ -38,6 +43,11 @@ angular
         templateUrl: 'views/chart.html',
         controller: 'ChartCtrl',
         controllerAs: 'chart'
+      })
+      .when('/homeworks', {
+        templateUrl: 'views/homeworks.html',
+        controller: 'HomeworksCtrl',
+        controllerAs: 'homeworks'
       })
       .otherwise({
         redirectTo: '/'

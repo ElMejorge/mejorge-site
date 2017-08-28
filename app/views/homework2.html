@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+  <h1> Tarea 2 </h1>
+  <ol>
+    <li>
+	    <h3>
+Explain what CloudFormation is and write a yaml file to create a bucket using CloudFormation.
+      </h3>
+      <p>
+AWS Cloud Formation is an AWS service that allows one to create, manage and update AWS resources in an orderly and predictable fashion. 
+      </p>
+      <p>
+It is used by writing a template to describe the AWS resource and the dependencies it uses, or the runtime parameters it requires to be run. After they are deployed you can modify and update them by applying a sort of version control like how it is used in software.
+      </p>
+      <p>
+    It helps to simplify the deployment and managing of AWS resources and to provide a way to replicate and create copies of one resource as needed.
+      </p>
+      <pre class="prettyprint">
+Resources:
+        S3Bucket:
+                Type: AWS::S3::Bucket
+	</pre>
+    </li>
+    <li>
+      <h3>
+Create a Hello World in NodeJs and create a tutorial about it.
+      </h3>
+      <p>
+      	To create a project in nodeJs first you have to make sure to have it installed. You can do this by typing <b>node -v</b> on your terminal, if you don't have it installed go to the official NodeJs page to install it.
+      </p>
+      <p>
+      We are now going to create a simple web application platform where we simple show a <i> "Hello World" </i> message when you make a Http request to it.
+      </p>
+      <p>
+      The code looks like this:
+      </p>
+      <pre class="prettyprint">
+	var http = require("http");	
+
+	var server = http.createServer(function (request, response) {
+	response.writeHead(200, {'Content-Type': 'text/plain'});
+	response.end("Hello World\n");
+});
+	</pre>
+	<p>
+	The first line loads the module we need to use to create a Http server, this is done with the require function and using the module name as argument.
+	</p>
+	<p>
+	The server is created with a function from the Http module using another funcion as argument, which describes how this Http server will behave. In this case we just tell it to respond the string <i> Hello World"</i>, with a Http code of 200 (which means the request was successful, and telling whoever is making the request that the response is in plain text.
+	</p>
+	<p>
+	We also need to add the next line, to indicate on which port our server is listening for requests.
+	</p>
+      <pre class="prettyprint">
+	server.listen(8000);
+      </pre>
+	<p>
+	With this our server is complete, to run it locally we just need to run the command <b> node {filename}</b> and make a request to it, for example by entering <i> localhost:8000 </i> on any browser.
+	</p>
+    </li>
+    <li>
+      <h3>
+Install the aws sdk for nodejs and create a tutorial about it.
+      </h3>
+      <p>
+      We begin by installing the aws sdk on our machine with whatever package manager we are using, in our case nodejs so the command is like this, to install globally on the machine.
+      </p>
+      <pre class="prettyprint">
+	sudo npm install -g aws-sdk
+      </pre>
+      <p>
+      	To use the sdk on your code you just need to use the require function and specify which services or just import it globally.
+      </p>
+      <pre class="prettyprint">
+	var AWS = require('aws-sdk');
+	var S3 = require('aws-sdk/clients/s3');
+      </pre>
+      <p>
+      	Now you can use any service from aws through these var, for example to create a bucket you would do something like this.
+      </p>
+      <pre class="prettyprint">
+	S3.createBucket(,{ Bucket : "MyBucketName"} function(err, data) {
+  	 if (err) {
+      		console.log("Error", err);
+  	 } else {
+      		console.log("Success", data.Location);
+  	 }
+	});
+      </pre>
+      <p>
+      This creates a bucket with "MyBucketName" as name and we log wether the process was an error or success with the callback function.
+      </p>	      
+    </li>
+    <li>
+      <h3>
+Create a code in NodeJs that will tell you the version/date of your website in S3.
+      </h3>
+      <pre class="prettyprint">
+	var aws = require('aws-sdk');
+	var s3 = new aws.S3();
+
+	s3.listBuckets(function (error, data) {
+    	for (var i = 0; i &lt; data.Buckets.length; i++) {
+	    if(data.Buckets[i].Name === 'mejorge-site'){
+		    console.log(data.Buckets[i]['CreationDate'])
+	    }
+   	 }
+	});
+      </p>
+</pre> 
+    </li>
+    <li>
+      <h3>
+Read and explain the post about Microservices Trade-Offs by Martin Fowler (http://martinfowler.com/articles/microservice-trade-offs.html).
+      </h3>
+      <p>
+      This post talks about the benefits and disadvantages of using a microservice architecture in any project and why you should or shouldn’t use it on your project. Microservices in general allow teams to set hard boundaries on every module of the project since each team only works on their own part and just has to make sure that it works by itself and responds in the way it is expected, while on a more monolithic architecture these boundaries often get blurred. On larger teams this becomes a lot more important since it helps to ease the coordination between them, with each one just having to worry about their own part.
+      </p>
+      <p>
+      Another important benefit from microservices is that each module in itself becomes simpler to develop since the development team has a specific goal to achieve and they can use the technology that best works for that, mixing languages, frameworks and databases on a big team. Independent deployment is also simpler since you only test and deploy that service by itself, instead of updating a whole project.
+      </p>
+      <p>
+      The ease of development and individual deployment is setback by the complexity for the operations team since they have to manage lots of services, each one being deployed or updated continuously and interacting with one another in many different ways. This asynchronous updating also brings more trouble, because it means that while one is updating, it may cause hard-to-predict errors and even harder to debug them since they are only temporal.
+      </p>
+    </li>
+    <li>
+      <h3>
+Create a comparison table between AWS, Azure and Google Cloud.
+      </h3>
+      <p>
+       <table style="width:100%">
+  <tr>
+    <th>Category</th>
+    <th>AWS</th>
+    <th>Microsoft Azure</th>
+    <th>Google Cloud</th>
+  </tr>
+  <tr>
+    <td> Types of instances </td>
+    <td> 54 </td>
+    <td> 52 </td>
+    <td> 18 </td>
+  </tr>
+  <tr>
+    <td> Available regions </td>
+    <td> 12 </td>
+    <td> 22 </td>
+    <td> 4 </td>
+  </tr>
+  <tr>
+    <td> Security </td>
+    <td> CloudHSM service protects encryption keys but costs more. Free use of Identity and Access Management</td>
+    <td> Azure security center provides basic alerting, security policy assesments and recommendations. Key vault handles encryption needs.</td>
+    <td> Coud Security scanner automates scanning for vulnerabilities. Google's Key Management Service encrypts data and handles keys for free.</td>
+  </tr>
+  <tr>
+  <tr>
+	  <td> Storage</td>
+    <td> Many storage options, EBS-Magnetic volumes, S3, SSDs</td>
+    <td> Standard and premium options</td>
+    <td> HDD and SSD</td>
+  </tr>
+    <td> Networking </td>
+    <td> Use VPC service with Route53 DNS service. Provides public IP, firewall and ACL.</td>
+    <td> Use Vnet service with Azure DNS as DNS service. Provides public IP, firewall and ACL.</td>
+    <td> Uses Subnet service with CloudDNS as DNS service. Provides public IP, firewall and ACL.</td>
+  </tr>
+  <tr>
+    <td> Big data</td>
+    <td> Broad spectrum of services such as Elastic MapReducand Kinesis Firehose to stream datasets.</td>
+    <td> Big dat storage service, Data Lake Store, with Hadoop filesystem.</td>
+    <td> BigQuery service to query big data with a SQL interface. Can perform data streaming.</td>
+  </tr>
+  <tr>
+    <td> Analytics </td>
+    <td> Broad spectrum of service, Business Intelligence service and graphics processing unit instances.</td>
+    <td> Data Lake Analytics, which uses propietary U-SQL. Also Azure Stream analytics service, which identifies data assets using a global metadata system. Lastly, Data Factory interlinks data sources and mages pipelines. </td>
+    <td>  Has an edge with search and analytics engines. Google Analtics and Double Click services gathers statics to feed BigQuery. A big disadvantage is a lack of GPU instances. </td>
+  </tr>
+</table> 
+      </p>
+    </li>
+    <li>
+      <h3>
+Read at least 5 sections of Seth Godin’s Manifesto: “Stop Stealing Dreams” and tell me what you think about it.
+      </h3>
+      <p>
+      Most of what I read was the history of how our education system first came to be and the priorities it had. I found it specially interesting since one can easily tell now what the system is trying to achieve, obedient workers, but I didn't know the complete story.
+      </p>
+      <p>
+     I've thought a lot about our education system, mostly comparing it to how it works in other countries such as Germany and Japan, and I've found it lacking in a lot of ways. This is something that upsets me but at the same time there is not much I can do about it so the most I try is to take advantage of all the opportunities I have to learn inside and outside of school. For this I think that books like these are important, to understand exactly what are the issues with schools nowadays and how to work around the. 
+      </p>
+   </li>
+  </ol>
+</body>
+</html>
