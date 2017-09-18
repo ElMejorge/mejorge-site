@@ -13,21 +13,21 @@ angular.module('saitoMessApp')
 
     $scope.heroes = [];
 
-    $http({
-      method: 'GET',
-      url: lambdaUrl
-    }).then(function successCallback(response) {
-      console.log(response.data[0]);
-      $scope.heroes = response.data[0];
-    }, function errorCallback(response) {
-      $scope.response = 'Request failed';
-    });
+    // $http({
+    //   method: 'GET',
+    //   url: lambdaUrl
+    // }).then(function successCallback(response) {
+    //   console.log(response.data[0]);
+    //   $scope.heroes = response.data[0];
+    // }, function errorCallback(response) {
+    //   $scope.response = 'Request failed';
+    // });
 
-    // $scope.heroes = [
-    //   {name : 'Batman', id:"1011116" },
-    //   {name : 'Superman', id:"1009146"},
-    //   {name : 'SomeOtherGuy', id:"1009146"}
-    // ];
+    $scope.heroes = [
+      {name : 'Batman', id:"1011116" },
+      {name : 'Superman', id:"1009146"},
+      {name : 'SomeOtherGuy', id:"1009146"}
+    ];
 
     $scope.hero = "None selected";
     $scope.otherHero = "None selected";
@@ -42,7 +42,6 @@ angular.module('saitoMessApp')
         $scope.comics = response.data[0];
       }, function errorCallback(response) {
         console.log(response.data);
-        $scope.response = 'Request failed';
       });
     };
 
@@ -53,10 +52,9 @@ angular.module('saitoMessApp')
         data: '{"hero1:"' + $scope.hero.id + '","hero2:"' + $scope.otherHero.id + '"}'
       }).then(function successCallback(response) {
         console.log(response.data[0]);
-        $scope.comics = response.data[0];
+        $scope.series = response.data[0];
       }, function errorCallback(response) {
         console.log(response.data);
-        $scope.response = 'Request failed';
       });
     }
   });
