@@ -41,6 +41,7 @@
     "test": "karma start test/karma.conf.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.104.0"
+    "aws-sdk": "^2.104.0",
+    "gtag": "^1.0.1"
   }
 }

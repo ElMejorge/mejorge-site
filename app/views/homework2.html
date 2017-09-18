@@ -105,7 +105,7 @@ Create a code in NodeJs that will tell you the version/date of your website in S
 	var s3 = new aws.S3();
 
 	s3.listBuckets(function (error, data) {
-    	for (var i = 0; i &lt; data.Buckets.length; i++) {
+    	for (var i = 0; i &lt data.Buckets.length; i++) {
 	    if(data.Buckets[i].Name === 'mejorge-site'){
 		    console.log(data.Buckets[i]['CreationDate'])
 	    }
@@ -133,56 +133,7 @@ Read and explain the post about Microservices Trade-Offs by Martin Fowler (http:
 Create a comparison table between AWS, Azure and Google Cloud.
       </h3>
       <p>
-       <table style="width:100%">
-  <tr>
-    <th>Category</th>
-    <th>AWS</th>
-    <th>Microsoft Azure</th>
-    <th>Google Cloud</th>
-  </tr>
-  <tr>
-    <td> Types of instances </td>
-    <td> 54 </td>
-    <td> 52 </td>
-    <td> 18 </td>
-  </tr>
-  <tr>
-    <td> Available regions </td>
-    <td> 12 </td>
-    <td> 22 </td>
-    <td> 4 </td>
-  </tr>
-  <tr>
-    <td> Security </td>
-    <td> CloudHSM service protects encryption keys but costs more. Free use of Identity and Access Management</td>
-    <td> Azure security center provides basic alerting, security policy assesments and recommendations. Key vault handles encryption needs.</td>
-    <td> Coud Security scanner automates scanning for vulnerabilities. Google's Key Management Service encrypts data and handles keys for free.</td>
-  </tr>
-  <tr>
-  <tr>
-	  <td> Storage</td>
-    <td> Many storage options, EBS-Magnetic volumes, S3, SSDs</td>
-    <td> Standard and premium options</td>
-    <td> HDD and SSD</td>
-  </tr>
-    <td> Networking </td>
-    <td> Use VPC service with Route53 DNS service. Provides public IP, firewall and ACL.</td>
-    <td> Use Vnet service with Azure DNS as DNS service. Provides public IP, firewall and ACL.</td>
-    <td> Uses Subnet service with CloudDNS as DNS service. Provides public IP, firewall and ACL.</td>
-  </tr>
-  <tr>
-    <td> Big data</td>
-    <td> Broad spectrum of services such as Elastic MapReducand Kinesis Firehose to stream datasets.</td>
-    <td> Big dat storage service, Data Lake Store, with Hadoop filesystem.</td>
-    <td> BigQuery service to query big data with a SQL interface. Can perform data streaming.</td>
-  </tr>
-  <tr>
-    <td> Analytics </td>
-    <td> Broad spectrum of service, Business Intelligence service and graphics processing unit instances.</td>
-    <td> Data Lake Analytics, which uses propietary U-SQL. Also Azure Stream analytics service, which identifies data assets using a global metadata system. Lastly, Data Factory interlinks data sources and mages pipelines. </td>
-    <td>  Has an edge with search and analytics engines. Google Analtics and Double Click services gathers statics to feed BigQuery. A big disadvantage is a lack of GPU instances. </td>
-  </tr>
-</table> 
+
       </p>
     </li>
     <li>
@@ -190,12 +141,8 @@ Create a comparison table between AWS, Azure and Google Cloud.
 Read at least 5 sections of Seth Godin’s Manifesto: “Stop Stealing Dreams” and tell me what you think about it.
       </h3>
       <p>
-      Most of what I read was the history of how our education system first came to be and the priorities it had. I found it specially interesting since one can easily tell now what the system is trying to achieve, obedient workers, but I didn't know the complete story.
       </p>
-      <p>
-     I've thought a lot about our education system, mostly comparing it to how it works in other countries such as Germany and Japan, and I've found it lacking in a lot of ways. This is something that upsets me but at the same time there is not much I can do about it so the most I try is to take advantage of all the opportunities I have to learn inside and outside of school. For this I think that books like these are important, to understand exactly what are the issues with schools nowadays and how to work around the. 
-      </p>
-   </li>
+    </li>
   </ol>
 </body>
 </html>

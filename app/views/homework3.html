@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+  <h1> Tarea 3 </h1>
+  <ol>
+    <li>
+	<i>
+		Create a NodeJS script that will do the following:
+		<ul>
+			<li>Download the image from s3://cc414-images/scientist.png.</li>
+			<li>Check if the metadata key “x-amz-meta-move" of the image is true.</li>
+			<li>If true, upload the image to s3://cc414-images/{MATRICULA}/image.png</li>
+		</ul>
+	</i><br>
+      <pre class="prettyprint">
+const aws = require("aws-sdk");
+const s3 = new aws.S3({ region: "us-east-1"});
+
+const bucket = "cc414-images";
+const img = "scientist.png";
+
+s3.headObject({Bucket: bucket, Key:img}, function(error, response) {
+	if(error){
+		console.log(error,error.stack)
+	} else {
+		if(response.Metadata.move) {
+			var imgData = {
+				CopySource: bucket + "/" + img,
+				Bucket: bucket + "/19598",
+				Key: "image.png"
+			}
+			
+			s3.copyObject(imgData, function(error, response) {
+				if(error){
+					console.log(error, error.stack);
+				} else {
+					console.log(response);
+				}
+			});
+		}
+	}
+});
+	</pre>
+    </li>
+    <li>
+      <i>
+	      Create a NodeJS script that will do the following:
+	      <ul>
+		      <li>Will get the Nasa Astronomy Picture of the day.</li>
+		      <li>Save the image in the local file system.</li>
+		      <li>Print the title of the image.</li>
+	      </ul>
+		      <br>
+      </i>
+      <pre class="prettyprint">
+const https = require("https");
+const fs = require("fs");
+
+const apiKey = "OxEBO1AnjbhGEm0BO5qycRC7Eskay6S9NyAV0MOf"
+const url = "https://api.nasa.gov/planetary/apod?api_key=" + apiKey
+
+https.get(url, response => {
+	response.setEncoding("utf8");
+	var totalData = "";
+
+	response.on("data", data => {
+		totalData += data;
+	});
+
+	response.on("end", data => {
+		var img = JSON.parse(totalData);
+		var filename = "DayPic_" + Date.now() + ".jpg";
+		var writer = fs.createWriteStream(filename);
+
+		https.get(img.url, function(response) {
+			response.pipe(writer);
+		});
+
+	});
+});
+    </li>
+    <li>
+      <i>
+      Implement Google Analytics in your personal web site (All teams will do the same
+for their Final Project).
+      </i>
+      <br>
+      <p>
+      	Teamwork: Manuel Puentes <br>
+	I couldn't have done it without his guidance and good will. 
+      </p>
+       <img src="resources/google-analytics.jpg" alt="Google Analytics" style="width:550px;">
+    </li>
+    <li>
+      <i>
+      Read and explain the following article by Martin Fowler: http://martinfowler.com/articles/richardsonMaturityModel.html.
+      </i>
+      <br>
+      <p>
+      <br>
+      The article talks about the different ways you can use HTTP to make an API, dividing it into levels which represent the “maturity” of the designers of the application itself. Fowler divides the levels depending on how many and how you use the mechanisms of the web to make the API more efficient and easier to understand for other people, by following the REST approach.
+      </p>
+      Level 0 is basically just using the HTTP as a transport system, level 1 involves dividing the application into resources, that are kind of like the objects which are being used by the application. Level 2 involves taking advantage of the HTTP verbs (POST,GET, PUT, DELETE, etc.) and level 3 involves using hypermedia control to simplify changes to the API structure without breaking the clients that use them.
+      <p>
+      </p>
+      <p>
+      He ends the article by saying that it is important to follow or at least understand this model since it uses common design techniques that are proven to work and helps us to frame the expectations of the people who are going to interact with it.
+      </p>
+    </li>
+    <li>
+      <i>
+      Explain why cloud computing is important. 
+      </i>
+      <p>
+	<br>
+      Cloud Computing opens a whole realm of possibilities to almost all kinds of people. From entrepreneurs who can start working and developing their companies or ideas without having to buy racks of servers and people to manage them, besides having the option to benefit from the economy of scale by becoming relatively cheaper as their consumers increase.
+      </p>
+      <p>
+          It also helps researchers who need to use a lot of computer power to run their algorithms by renting just the amount they need instead of having to invest all their money in buying a supercomputer or having to request to use one from a university or the like.
+      </p>
+      <p>
+Lastly, it helps developers by having servers and server-related services in a neat package that is guaranteed to work out-of-the-box and with an extremely high reliability rate to assure that their applications (if well coded) will run without problems.
+      </p>
+    </li>
+    <li>
+      <i>
+      Explain what would like to change in this class and why.
+      </i>
+      <p>
+      <br>
+    The only thing I would change is the date to turn in assignments from saturday at 00:00am to Sundays at 12:00am to allow me to work on an assignment on early sundays if need be without feeling as guilty.
+      </p>
+    </li>
+     </ol>
+</body>
+</html>

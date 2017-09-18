@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Homework 4</title>
+</head>
+<body>
+  <h1>
+    Search for your heroes here:
+  </h1>
+  <div>
+
+    <p>
+  Hero:
+    <select ng-model="hero">
+      <option ng-repeat="hero in heroes" value="{{hero.name}}">{{hero.name}}</option>
+    </select>
+  <p/>
+
+  Another Hero:
+  <select ng-model="otherHero">
+    <option ng-repeat="hero in heroes" value="{{hero.name}}">{{hero.name}}</option>
+  </select>
+
+  <hr/>
+
+  <b>Hero:</b> {{hero}} <br/>
+    <b>Another Hero:</b> {{otherHero}}
+
+  </div>
+
+  <div>
+    <a ng-click='getComics()' ><h4>Get comics where both appeared.</h4></a>
+  </div>
+  <div>
+    <ul>
+      <li ng-repeat="comic in comics">{{comic.name}}</li>
+    </ul>
+  </div>
+  <br>
+  <div>
+    <a ng-click='getSeries()' ><h4>Get series where both appeared.</h4></a>
+  </div>
+  <div>
+    <ul>
+      <li ng-repeat="serie in series">{{serie.name}}</li>
+    </ul>
+  </div>
+  <a href="">Visit the github for the lambdas powering this site.</a> <br>
+  <a href="https://github.com/ElMejorge/marvel_heroes_lambdas">Visit the github for the controller code</a>
+</body>
+</html>
