@@ -8,24 +8,27 @@
   <h1>
     Search for your heroes here:
   </h1>
+  <p>
+  Note: Pagination doesn't work yet so you can only use the first 40 or so heroes alphabetically ordered.<br>
+    Protips: If it only loads a blank object after clicking a request, it probably timed out so you should try again.<br>
+    Adam Warlock and Absorbing Man have comics together, to save the trouble of going one by one.
+  </p>
   <div>
-
     <p>
   Hero:
     <select ng-model="hero">
-      <option ng-repeat="hero in heroes" value="{{hero.name}}">{{hero.name}}</option>
+      <option ng-repeat="hero in heroes" value="{{hero.id}}">{{hero.name}}</option>
     </select>
   <p/>
 
   Another Hero:
   <select ng-model="otherHero">
-    <option ng-repeat="hero in heroes" value="{{hero.name}}">{{hero.name}}</option>
+    <option ng-repeat="hero in heroes" value="{{hero.id}}">{{hero.name}}</option>
   </select>
 
   <hr/>
-
-  <b>Hero:</b> {{hero}} <br/>
-    <b>Another Hero:</b> {{otherHero}}
+  <!--<b>Hero:</b> {{hero}} <br/>-->
+    <!--<b>Another Hero:</b> {{otherHero}}-->
 
   </div>
 
@@ -46,7 +49,7 @@
       <li ng-repeat="serie in series">{{serie.title}}</li>
     </ul>
   </div>
-  <a href="https://github.com/ElMejorge/mejorge-site/blob/master/app/scripts/controllers/marvel.js">Visit the github for the lambdas powering this site.</a> <br>
-  <a href="https://github.com/ElMejorge/marvel_heroes_lambdas">Visit the github for the controller code</a>
+  <a href="https://github.com/ElMejorge/mejorge-site/blob/master/app/scripts/controllers/marvel.js">Visit the github for the controller code.</a> <br>
+  <a href="https://github.com/ElMejorge/marvel_heroes_lambdas">Visit the github for the lambdas powering this page.</a>
 </body>
 </html>

@@ -13,33 +13,34 @@ angular.module('saitoMessApp')
 
     $scope.heroes = [];
 
-    // $http({
-    //   method: 'GET',
-    //   url: lambdaUrl
-    // }).then(function successCallback(response) {
-    //   console.log(response.data[0]);
-    //   $scope.heroes = response.data[0];
-    // }, function errorCallback(response) {
-    //   $scope.response = 'Request failed';
-    // });
+    $http({
+      method: 'GET',
+      url: lambdaUrl
+    }).then(function successCallback(response) {
+      console.log(response.data[0]);
+      $scope.heroes = response.data[0];
+    }, function errorCallback(response) {
+      $scope.response = 'Request failed';
+    });
 
-    $scope.heroes = [
-      {name : 'Batman', id:"1011116" },
-      {name : 'Superman', id:"1009146"},
-      {name : 'SomeOtherGuy', id:"1009146"}
-    ];
+    // $scope.heroes = [
+    //   {name : 'Batman', id:"1011116" },
+    //   {name : 'Superman', id:"1009146"},
+    //   {name : 'SomeOtherGuy', id:"1009146"}
+    // ];
 
     $scope.hero = "None selected";
     $scope.otherHero = "None selected";
 
     $scope.getComics = function() {
+      console.log('{"hero1":"' + $scope.hero + '","hero2":"' + $scope.otherHero + '"}');
       $http({
         method: 'POST',
         url: "https://s711n2dtcg.execute-api.us-east-1.amazonaws.com/Testing/compare/comics",
-        data: '{"hero1:"' + $scope.hero.id + '","hero2:"' + $scope.otherHero.id + '"}'
+        data: '{"hero1":"' + $scope.hero + '","hero2":"' + $scope.otherHero + '"}'
       }).then(function successCallback(response) {
-        console.log(response.data[0]);
-        $scope.comics = response.data[0];
+        console.log(response.data);
+        $scope.comics = response.data;
       }, function errorCallback(response) {
         console.log(response.data);
       });
@@ -49,10 +50,9 @@ angular.module('saitoMessApp')
       $http({
         method: 'POST',
         url: "https://s711n2dtcg.execute-api.us-east-1.amazonaws.com/Testing/compare/series",
-        data: '{"hero1:"' + $scope.hero.id + '","hero2:"' + $scope.otherHero.id + '"}'
+        data: '{"hero1":"' + $scope.hero + '","hero2":"' + $scope.otherHero + '"}'
       }).then(function successCallback(response) {
-        console.log(response.data[0]);
-        $scope.series = response.data[0];
+        $scope.series = response.data;
       }, function errorCallback(response) {
         console.log(response.data);
       });
