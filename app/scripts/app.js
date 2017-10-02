@@ -54,7 +54,7 @@ angular
         controller: 'HomeworkCtrl',
         controllerAs: 'homeworks'
       })
-	    .when('/homework/4', {
+      .when('/homework/4', {
         templateUrl: 'views/homework4.html',
         controller: 'MarvelCtrl',
         controllerAs: 'marvel'

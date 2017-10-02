@@ -9,21 +9,18 @@
     Search for your heroes here:
   </h1>
   <p>
-  Note: Pagination doesn't work yet so you can only use the first 40 or so heroes alphabetically ordered.<br>
-    Protips: If it only loads a blank object after clicking a request, it probably timed out so you should try again.<br>
-    Adam Warlock and Absorbing Man have comics together, to save the trouble of going one by one.
   </p>
   <div>
     <p>
   Hero:
     <select ng-model="hero">
-      <option ng-repeat="hero in heroes" value="{{hero.id}}">{{hero.name}}</option>
+      <option ng-repeat="hero in heroes" value="{{hero}}">{{hero.name}}</option>
     </select>
   <p/>
 
   Another Hero:
   <select ng-model="otherHero">
-    <option ng-repeat="hero in heroes" value="{{hero.id}}">{{hero.name}}</option>
+    <option ng-repeat="hero in heroes" value="{{hero}}">{{hero.name}}</option>
   </select>
 
   <hr/>
@@ -32,23 +29,30 @@
 
   </div>
 
-  <div>
-    <a ng-click='getComics()' ><h4>Get comics where both appeared.</h4></a>
-  </div>
-  <div>
+  <button ng-click='getInfo()'>
+    <h4> GO </h4>
+ </button>
+    <h5> Time to get comics: "{{comicTime}}" seconds </h5>
+    <h5> Time to get series: "{{seriesTime}}" seconds </h5>
+  <div ng-if='hasComics'>
+	  <h3> Comics </h3>
     <ul>
       <li ng-repeat="comic in comics">{{comic.title}}</li>
     </ul>
   </div>
-  <br>
-  <div>
-    <a ng-click='getSeries()' ><h4>Get series where both appeared.</h4></a>
+  <div ng-if="!hasComics">
+	  <h3> They do not have comics together. </h3>
   </div>
-  <div>
+  <div ng-if="hasSeries">
+	  <h3> Series </h3>
     <ul>
       <li ng-repeat="serie in series">{{serie.title}}</li>
     </ul>
   </div>
+  <div ng-if="!hasSeries">
+	  <h3> They do not have series together. </h3>
+  </div>
+  <br>
   <a href="https://github.com/ElMejorge/mejorge-site/blob/master/app/scripts/controllers/marvel.js">Visit the github for the controller code.</a> <br>
   <a href="https://github.com/ElMejorge/marvel_heroes_lambdas">Visit the github for the lambdas powering this page.</a>
 </body>

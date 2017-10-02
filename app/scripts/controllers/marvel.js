@@ -17,46 +17,78 @@ angular.module('saitoMessApp')
       method: 'GET',
       url: lambdaUrl
     }).then(function successCallback(response) {
-      console.log(response.data[0]);
-      $scope.heroes = response.data[0];
+      console.log(response.data);
+      $scope.heroes = response.data;
     }, function errorCallback(response) {
       $scope.response = 'Request failed';
     });
 
-    // $scope.heroes = [
-    //   {name : 'Batman', id:"1011116" },
-    //   {name : 'Superman', id:"1009146"},
-    //   {name : 'SomeOtherGuy', id:"1009146"}
-    // ];
+	  //$scope.heroes = [
+		  //{id:"1009148",name:"Absorbing man",comicAmount:"53",seriesAmount:"37"},
+		  //{id:"1010354",name:"Adam Warlock",comicAmount:"128",seriesAmount:"56"},
+		  //{id:"1009147",name:"Some other guy",comicAmount:"128",seriesAmount:"56"},
+	  //];
 
     $scope.hero = "None selected";
     $scope.otherHero = "None selected";
+    $scope.hasComics = true;
+    $scope.hasSeries = true;
 
-    $scope.getComics = function() {
-      console.log('{"hero1":"' + $scope.hero + '","hero2":"' + $scope.otherHero + '"}');
+    function getComics(t0) {
+	var heroParams = getHeroParamsJSON(JSON.parse($scope.hero), JSON.parse($scope.otherHero));
       $http({
         method: 'POST',
         url: "https://s711n2dtcg.execute-api.us-east-1.amazonaws.com/Testing/compare/comics",
-        data: '{"hero1":"' + $scope.hero + '","hero2":"' + $scope.otherHero + '"}'
+	data: heroParams
       }).then(function successCallback(response) {
         console.log(response.data);
-        $scope.comics = response.data;
+	if(response.data.length > 0){
+      		$scope.comics = response.data;
+	 	$scope.hasComics = true;
+	} else {
+		$scope.hasComics = false;
+	}
+	      var t1 = performance.now();
+	      $scope.comicTime = ((t1-t0)/1000).toFixed(2)
       }, function errorCallback(response) {
         console.log(response.data);
       });
     };
 
-    $scope.getSeries = function() {
-      $http({
+   function getSeries(t0) {
+	var heroParams = getHeroParamsJSON(JSON.parse($scope.hero), JSON.parse($scope.otherHero));
+     $http({
         method: 'POST',
         url: "https://s711n2dtcg.execute-api.us-east-1.amazonaws.com/Testing/compare/series",
-        data: '{"hero1":"' + $scope.hero + '","hero2":"' + $scope.otherHero + '"}'
+	data: heroParams
       }).then(function successCallback(response) {
-        $scope.series = response.data;
+        if(response.data.length > 0){
+      		$scope.series = response.data;
+	 	$scope.hasSeries = true;
+	} else {
+		$scope.hasSeries = false;
+	}
+	      var t1 = performance.now();
+	      $scope.seriesTime = ((t1-t0)/1000).toFixed(2)
       }, function errorCallback(response) {
         console.log(response.data);
       });
-    }
+    };
+	  
+	  $scope.getInfo = function() {
+		  var t0 = performance.now();
+		  getSeries(t0);
+		  getComics(t0);
+	  }
   });
+
+function parseHeroToJson(hero){
+	return '{"id":' + hero["id"] + ',"comicAmount":' + hero["comicAmount"] + ',"seriesAmount":' + hero["seriesAmount"] + '}';
+}
+
+function getHeroParamsJSON(hero1, hero2){
+	return '{"hero1":' + parseHeroToJson(hero1) + ',"hero2":' + parseHeroToJson(hero2) + '}';
+
+}
 
 
